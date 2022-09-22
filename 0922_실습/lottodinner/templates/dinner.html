@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        .main_box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+
+        .main_text {
+            text-align: center;
+            margin: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .main_imgs {
+            width: 50%;
+            height: 700px;
+        }
+        .btn_cover {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3rem;
+        }
+        
+        .dinner_btn {
+            border-radius: 3rem;
+            width: 20vw;
+            height: 5vh;
+        }
+
+        .active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark text-bg-dark">
+        <div class="container">
+          <a class="navbar-brand text-bg-dark justify-content-center">Today's Dinner</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNav">
+            <div class="navbar-nav">
+                <a class="nav-link active text-bg-dark" aria-current="page" href="http://localhost:8000/dinner/">dinner</a>
+                <a class="nav-link text-bg-dark" href="http://localhost:8000/lotto/">lotto</a>
+              </div>
+          </div>
+        </div>
+      </nav>
+    <div class="main_box" id ="dinner_main">
+        <span class="main_text">오늘의 저녁 추천 메뉴는 <span style="color: red;">{{ menu }}</span> 입니다.</span>
+        <img class="main_imgs" src='{{ img }}'>
+    </div>
+    <div class="btn_cover">
+    <button class="dinner_btn" id="dinner_Btn">메뉴 추첨</button>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script>
+
+        const dinnerBtn = document.querySelector('#dinner_Btn')
+        dinnerBtn.addEventListener('click', function () {
+            // $("#dinner_main").load(location.href + " #dinner_main");
+            const dinnerMain = document.querySelector('#dinner_main') // display none 되어있는 main box 가져오기
+            dinnerMain.classList.add('active') // active라는 style 적용
+            
+        })
+
+    </script>
+</body>
+</html>
