@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container mt-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">pk</th>
+          <th scope="col">영화 제목</th>
+          <th scope="col">줄거리</th>
+          <th scope="col">상영 시간</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for movie in movies %}
+          <tr>
+            <th scope="row">{{ movie.id }}</th>
+            <td>
+              <a href="{% url 'movie_info:details' movie.pk %}" method="POST">{{ movie.title }}</a>
+            </td>
+            <td>{{ movie.summary }}</td>
+            <td>{{ movie.running_time }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

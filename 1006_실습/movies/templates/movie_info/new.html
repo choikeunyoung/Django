@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
+  <div class='container d-flex justify-content-center'>
+    <div class="details">
+      <form action="{% url 'movie_info:create' %}" method='POST'>
+        {% csrf_token %}
+        {% bootstrap_form movies_form %}
+        <a href="{% url 'movie_info:board' %}">
+          <input type="submit" class="btn btn-primary" value='추가'></input>
+        </a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+body {
+    font-family: 'Bungee Spice', cursive;
+}
+
+.details {
+    margin-top: 2rem;
+    width: 50%;
+    flex-direction: column;
+}
+
+.total {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.contents {
+    color: gray
+}
