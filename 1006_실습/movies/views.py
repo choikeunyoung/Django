@@ -8,21 +8,28 @@ def main(request):
 
 def board(request):
     movies = Movie_Info.objects.all().order_by('-pk')
+    movies_len = []
+    c = 1
+    for i in movies:
+        movies_len.append({'pk': i.pk, 'title': i.title , 'summary':i.summary, 'running_time':i.running_time, 'num': c})
+        c+= 1
     context = {
-        'movies' : movies,
+        'movies' : movies_len,
     }
     return render(request, 'movie_info/board.html', context)
 
-def new(request):
-    movies_form = MovieForm()
+def create(request):
+    if request.method == 'POST':
+        movie_form = MovieForm(request.POST)
+        if movie_form.is_valid():
+            movie_form.save()
+            return redirect('movie_info:board')
+    else:
+        movies_form = MovieForm()
     context = {
         'movies_form' : movies_form
     }
-    return render(request, 'movie_info/new.html', context)
-
-def create(request):
-    Movie_Info.objects.create(title=request.POST.get('title'),summary=request.POST.get('summary'),running_time=request.POST.get('running_time'))
-    return redirect("movie_info:board")
+    return render(request, 'movie_info/new.html', context=context)
 
 def details(request, pk):
     movie_info = Movie_Info.objects.get(pk=pk)
@@ -33,11 +40,20 @@ def details(request, pk):
 
 def edit(request, pk):
     movie_info = Movie_Info.objects.get(pk=pk)
+    if request.method == 'POST':
+        movie_form = MovieForm(request.POST, instance=movie_info)
+        if movie_form.is_valid():
+            movie_form.save()
+            return redirect("movie_info:details", movie_info.pk)
+    else:
+        movie_form = MovieForm(instance=movie_info)
     context = {
-        'title' : request.POST.get(Instance=movie_info.title),
-        'summary' : request.POST.get(Instance=movie_info.summary),
-        'running_time' : request.POST.get(Instance=movie_info.running_time),
+        'movie_info' : movie_info,
+        'movie_form' : movie_form,
     }
-    return render(request, 'movie_info/edit.html', name='edit')
-def delete(requet, pk):
-    pass
+    return render(request, 'movie_info/edit.html', context)
+
+def delete(request, pk):
+    movie_info = Movie_Info.objects.get(pk=pk)
+    movie_info.delete()
+    return redirect("movie_info:board")

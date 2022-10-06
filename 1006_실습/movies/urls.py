@@ -22,7 +22,8 @@ app_name = 'movie_info'
 urlpatterns = [
     path('main/', views.main, name='main'),
     path('board/', views.board, name='board'),
-    path('new/', views.new, name='new'),
-    path('', views.create, name='create'),
+    path('create/', views.create, name='create'),
     path('details/<int:pk>/', views.details, name='details'),
+    path('edit/<int:pk>/', views.edit, name='edit'),
+    path('delete/<int:pk>/', views.delete, name='delete'),
 ]

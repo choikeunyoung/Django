@@ -1,2 +1,18 @@
 {% extends 'base.html' %}
-{% block content %}{% endblock %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
+  <div class='container d-flex justify-content-center'>
+    <div class="details">
+      <form action="{% url 'movie_info:edit' movie_info.pk %}" method='POST'>
+        {% csrf_token %}
+        {% bootstrap_form movie_form %}
+        <a href="{% url 'movie_info:board' %}">
+          <input type="submit" class="btn btn-primary" value='수정하기'></input>
+        </a>
+      </form>
+    </div>
+  </div>
+{% endblock %}
