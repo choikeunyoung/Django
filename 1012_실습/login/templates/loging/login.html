@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <div class="container">
+    <h1 class="text-center text-secondary mt-5">
+      로그인
+    </h1>
+    <form action="{% url 'log:log_in' %}" method='POST'>
+      {% csrf_token %}
+      <div class="d-flex justify-content-center mt-5">
+        <div class="w-50 lh-lg">
+          {% bootstrap_form form %}
+          <button class="btn btn-primary" type="submit">확인</button>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock content %}

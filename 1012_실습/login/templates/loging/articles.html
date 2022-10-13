@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <div class="container mt-5">
+
+    <div class="d-flex justify-content-between">
+      {% if user != AnonymousUser %}
+        <div>{{ user }}님</div>
+        <div>
+          <a class="me-3" href="{% url 'log:log_out' %}" method='POST'>
+            <button class="btn btn-primary">로그아웃</button>
+          </a>
+          <a href="{% url 'log:signup' %}">
+            <button class="btn btn-primary">회원가입</button>
+          </a>
+        </div>
+      {% elif user == AnonymousUser %}
+        <div>
+          <a class="me-3" href="{% url 'log:log_in' %}" method='POST'>
+            <button class="btn btn-primary">로그인</button>
+          </a>
+          <a href="{% url 'log:signup' %}">
+            <button class="btn btn-primary">회원가입</button>
+          </a>
+        </div>
+      {% endif %}
+    </div>
+    <table class="table mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">아이디</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in form %}
+          <tr>
+            <th scope="row">{{ i.pk }}</th>
+            <td>{{ i.username }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}
