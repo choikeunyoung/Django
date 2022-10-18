@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="contain d-flex justify-content-center">
+    <div class="card text-center" style="width:40rem; height:40rem; margin-top:10%; margin-bottom: 10%;">
+      <div class="card-header">
+        {{ form.title }}
+      </div>
+      <div class="card-body">
+        <div style="height:45vh;">
+          {% if form.image %}
+            <!--이미지가 있을 경우 resize된 이미지 반환-->
+            <img src="{{ form.image.url }}" class="card-img-top" alt="..." style="height:100%;">
+          {% else %}
+            <!--없는 경우 static 파일의 이미지 가져오기-->
+            <img src="{% static 'images/unnamed.jpg' %}" class="card-img-top" alt="..." style="height:100%">
+          {% endif %}
+        </div>
+        <h5 class="card-title">{{ form.title }}</h5>
+        <p class="card-text">{{ form.content }}</p>
+        <a class="btn btn-outline-success" href="{% url 'prac:edit' form.pk %}">수정</a>
+        <a class="btn btn-outline-danger" href="{% url 'prac:delete' form.pk %}">삭제</a>
+      </div>
+      <div class="card-footer text-muted" style="line-height: 15px;">
+        생성 시간 :
+        {{ form.created_at }}
+        <hr>
+        수정 시간 :
+        {{ form.updated_at }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
