@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    background: url("https://img1.yna.co.kr/etc/inner/KR/2019/07/15/AKR20190715126700005_01_i_P4.jpg");
+    background-size: cover;
+    /* linear-gradient(rgba(192, 189, 189, 0.5), rgba(192, 191, 191, 0.5)),   */
+  }
+
+a {
+    text-decoration: none;
+}
+
+div img {
+    border-radius: 1rem;
+}
+
