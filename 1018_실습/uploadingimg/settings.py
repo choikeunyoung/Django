@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "login",
     'imagekit',
     "practice",
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

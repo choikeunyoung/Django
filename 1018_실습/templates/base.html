@@ -17,7 +17,22 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg" style="position: relative; height:25vh">
+    <input type="checkbox" id="menuicon">
+    <label for="menuicon">
+      <div class="logo_img">
+      <img src="{% static 'images/logo2.png' %}" alt="">
+      </div>
+      {% comment %} <span></span>
+      <span></span>
+      <span></span> {% endcomment %}
+    </label>
+    <div class="sidebar">
+      <a class="btn btn-outline-primary w-10 mx-3" href="{% url 'prac:article' %}">메인</a>
+      {% if user.is_authenticated %}
+      <a class="btn btn-outline-primary w-10" href="{% url 'prac:index' %}">글 쓰기</a>
+      {% endif %}
+    </div>
+    {% comment %} <nav class="navbar navbar-expand-lg" style="position: relative; height:25vh">
       <div style="position: absolute; margin-top:0; left:50% ">
         <img src="{% static 'images/logo2.png' %}" alt="" style="width:100%; height:25vh;">
       </div>
@@ -58,8 +73,10 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> {% endcomment %}
+    <div class="body_cover">
     {% block content %}{% endblock content %}
+  </div>
   </body>
 
 </html>
