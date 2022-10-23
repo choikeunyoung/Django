@@ -2,8 +2,10 @@
 {% load django_bootstrap5 %}
 {% load static %}
 {% block content %}
-  <div class="d-flex justify-content-center mb-5">
+  <div class="sign d-flex justify-content-center mb-5">
     <div class="w-50 h-50 m-0">
+      <h2 class="text_light">
+        <span class="light">회원가입</span></h2>
       <div class="card-body">
         <div class="back">
           <form action="{% url 'log:signup' %}" method='POST'>

@@ -1,22 +1,23 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
+  
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IU 앨범 모음집</title>
     {% load django_bootstrap5 %}
+    {% load static %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/detail.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/card_detail.css' %}">
+    {% comment %} <link href="https://webfontworld.github.io/heiroflight/HeirofLight.css" rel="stylesheet"> {% endcomment %}
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     {% bootstrap_css %}
     {% bootstrap_javascript %}
   </head>
 
-  <body>
+  <body style="font-family: 'Pacifico', cursive;">
     <input type="checkbox" id="menuicon">
     <label for="menuicon">
       <div class="logo_img">

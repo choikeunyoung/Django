@@ -10,29 +10,18 @@
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/mainstyle.css' %}">
   </head>
 
-  <body>
-    <div class="container">
-      <div class="card">
-        <div class="item">
-          <div class="circle"></div>
-          <img src="{% static 'images/logo.png' %}" alt="Luna" style="border-radius: 10rem;">
-        </div>
-        <div class="info">
-          <h1 class="title">호텔 델루나</h1>
-          <h3>Kakao Friends 3D Test Page Example Example Example</h3>
-          <div class="options">
-            <button class="active">1층</button>
-            <button>2층</button>
-            <button>3층</button>
-            <button>4층</button>
-          </div>
-          <div class="purchase">
-            <button>Purchase</button>
-          </div>
-        </div>
+  <a href="{% url 'prac:main2' %}" style="cursor: none;">
+
+    <body class="slide-in">
+      <div>
+        <div class='layer back'></div>
+        <p>
+          <span class="boo">🌙</span>
+        </p>
+        <div class='layer front'></div>
       </div>
-    </div>
-    <script src="{% static 'JS/mainjavascript.js' %}"></script>
-  </body>
+      <script src="{% static 'js/mainjavascript.js' %}"></script>
+    </body>
+  </a>
 
 </html>

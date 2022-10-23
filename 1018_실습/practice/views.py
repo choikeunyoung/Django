@@ -1,10 +1,10 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Article, Comment
 from .forms import ArticleForm, CommentForm
 from django.contrib.auth.decorators import login_required
 import os
 
-@login_required
+@login_required(login_url="log:log_in")
 def index(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES)
@@ -38,6 +38,7 @@ def detail(request, pk):
     }
     return render(request, "articleprac/detail.html", context)
 
+@login_required(login_url="log:log_in")
 def delete(request, pk):
     form = Article.objects.get(pk=pk)
     if form.image:
@@ -45,6 +46,8 @@ def delete(request, pk):
     Article.delete(form)
     return redirect("prac:article")
 
+
+@login_required(login_url="log:log_in")
 def update(request, pk):
     form_info = Article.objects.get(pk=pk)
     if request.method == 'POST':
@@ -61,7 +64,9 @@ def update(request, pk):
         'form_info' : form_info,
     }
     return render(request, 'articleprac/edit.html', context)
-    
+
+
+@login_required(login_url="log:log_in")
 def comment_create(request, pk):
     article = Article.objects.get(pk=pk)
     comment_form = CommentForm(request.POST, pk)
@@ -74,11 +79,40 @@ def comment_create(request, pk):
     else:
         return redirect('prac:detail', article.pk)
 
+# @login_required(login_url="log:log_in")
+# def comment_edit(request, article_pk, comment_pk):
+#     article = Comment.objects.get(pk=comment_pk)
+#     comment_form = CommentForm(instance=article)
+#     if request.method == 'POST':
+#         edit_form = CommentForm(request.POST, instance=comment_form)
+
+@login_required(login_url="log:log_in")
+def likes(request, pk):
+    # 로그인한 유저인지 확인
+    if request.user.is_authenticated:
+        article = get_object_or_404(Article, pk=pk)
+        # like_users에 pk값이 존재하는지 필터로 확인
+        if article.like_users.filter(pk=request.user.pk).exists():
+            article.like_users.remove(request.user)
+            article.like_count -= 1
+            article.save()
+        else:
+            article.like_users.add(request.user)
+            article.like_count += 1
+            article.save()
+        return redirect("prac:detail", article.pk)
+    return redirect("log:log_in")
+
+@login_required(login_url="log:log_in")
 def comment_delete(request, article_pk, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
     if request.user == comment.user:
         comment.delete()
     return redirect('prac:detail', article_pk)
 
+
 def main(request):
     return render(request, "articleprac/main.html")
+
+def main2(request):
+    return render(request, "articleprac/main2.html")
