@@ -4,4 +4,4 @@ from practice.models import Article
 
 
 class User(AbstractUser):
-    pass
+    followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')

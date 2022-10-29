@@ -8,6 +8,7 @@
     <title>IU 앨범 모음집</title>
     {% load django_bootstrap5 %}
     {% load static %}
+    {% load widget_tweaks %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/detail.css' %}">
@@ -16,16 +17,13 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
   </head>
-
+  
   <body style="font-family: 'Pacifico', cursive;">
     <input type="checkbox" id="menuicon">
     <label for="menuicon">
       <div class="logo_img">
-      <img src="{% static 'images/logo2.png' %}" alt="">
+        <img src="{% static 'images/logo2.png' %}" alt="">
       </div>
-      {% comment %} <span></span>
-      <span></span>
-      <span></span> {% endcomment %}
     </label>
     <div class="sidebar">
       <a class="btn btn-outline-primary w-10 mx-3" href="{% url 'prac:article' %}">메인</a>
@@ -33,51 +31,18 @@
       <a class="btn btn-outline-primary w-10" href="{% url 'prac:index' %}">글 쓰기</a>
       {% endif %}
     </div>
-    {% comment %} <nav class="navbar navbar-expand-lg" style="position: relative; height:25vh">
-      <div style="position: absolute; margin-top:0; left:50% ">
-        <img src="{% static 'images/logo2.png' %}" alt="" style="width:100%; height:25vh;">
-      </div>
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="btn btn-outline-primary w-10" href="{% url 'prac:article' %}">메인</a>
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-outline-primary w-10" href="{% url 'prac:index' %}">글 쓰기</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#">Action</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Another action</a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav> {% endcomment %}
     <div class="body_cover">
-    {% block content %}{% endblock content %}
-  </div>
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% block content %}{% endblock content %}
+    </div>
+    <script src="{% static 'js/comment.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   </body>
-
-</html>
+  
+  </html>

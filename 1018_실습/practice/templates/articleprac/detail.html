@@ -4,9 +4,9 @@
 {% block content %}
   <div class="d-flex justify-content-center">
     <div class="card_css text-center" style="width:40rem; height:auto; margin-top:10%; margin-bottom: 5%;">
-      <div class="my-3">
-        {{ form.title }}
-      </div>
+      <h2 class="my-3">
+        {{ user_info.username }}
+      </h2>
       <div class="card-body">
         <div style="height:45vh;">
           {% if form.image %}
@@ -20,7 +20,7 @@
 
         <h5 class="text-start ps-3 my-3">{{ form.title }}</h5>
         <p class="card-text text-start ps-3 ">{{ form.content }}</p>
-
+        <div class="d-flex justify-content-around">
         <form class="d-flex justify-content-center" action="{% url 'prac:likes' form.pk %}" method='POST'>
           {% csrf_token %}
           {% if user in form.like_users.all %}
@@ -41,6 +41,27 @@
               개</p>
           {% endif %}
         </form>
+        <form class="d-flex justify-content-center" action="{% url 'prac:follower' form.pk %}" method='POST'>
+          {% csrf_token %}
+          {% if user in user_info.followings.all %}
+            <button class="btn btn-link text-danger">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+              </svg>
+            </button>
+          {% else %}
+            <button class="btn btn-link text-danger">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+              </svg>
+            </button>
+          {% endif %}
+          <p style="font-size: 20px;">{{ user_info.followings.all.count }}
+            명</p>
+        </form>
+      </div>
 
         {% if request.user == comment.user %}
           <div class="d-flex justify-content-between mb-3">
@@ -69,10 +90,10 @@
             <h5 class="text-center" style="color: black; margin-bottom: 15px">방명록</h5>
             <div class="d-flex w-100">
               <div style="color:white; width:90%">
-                {{ comment_form }}
+                {{ comment_form }} 
               </div>
               <div style="width:10%">
-                <button class="btn btn-light h-100" type="submit">작성</button>
+                <button class="btn btn-light h-100" id="submitBtn" type="button">작성</button>
               </div>
             </div>
           </form>

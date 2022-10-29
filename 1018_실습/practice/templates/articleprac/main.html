@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/mainstyle.css' %}">
   </head>
 
-  <a href="{% url 'prac:main2' %}" style="cursor: none;">
+  {% comment %} <a href="{% url 'prac:main2' %}" style="cursor: none;"> {% endcomment %}
 
     <body class="slide-in">
       <div>
@@ -22,6 +22,6 @@
       </div>
       <script src="{% static 'js/mainjavascript.js' %}"></script>
     </body>
-  </a>
+  {% comment %} </a> {% endcomment %}
 
 </html>

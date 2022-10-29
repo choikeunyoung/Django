@@ -1,7 +1,9 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Article, Comment
 from .forms import ArticleForm, CommentForm
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 import os
 
 @login_required(login_url="log:log_in")
@@ -22,6 +24,8 @@ def index(request):
 
 def article(request):
     form = Article.objects.all()
+    user_info = get_user_model().objects.all()
+    
     context = {
         'forms' : form
     }
@@ -29,10 +33,12 @@ def article(request):
 
 def detail(request, pk):
     form_detail = Article.objects.get(pk=pk)
+    user_info = get_user_model().objects.get(pk=form_detail.user_id)
     comment_form = CommentForm()
     comments = form_detail.comment_set.all()
     context = {
         'form' : form_detail,
+        'user_info' : user_info,
         'comment_form' : comment_form,
         'comments' : comments,
     }
@@ -101,6 +107,23 @@ def likes(request, pk):
             article.like_count += 1
             article.save()
         return redirect("prac:detail", article.pk)
+    return redirect("log:log_in")
+
+
+@login_required(login_url="log:log_in")
+def follower(request, pk):
+    if request.user.is_authenticated:
+        article = get_object_or_404(Article, pk=pk)
+        following_user = get_user_model().objects.get(pk=article.user_id)
+        if request.user.pk == article.user_id:
+            messages.warning(request, "스스로 팔로우 할 수 없습니다.")
+            return redirect("prac:detail", pk)
+        else:
+            if request.user in following_user.followings.all():
+                following_user.followings.remove(request.user.pk)
+            elif request.user not in following_user.followings.all():
+                following_user.followings.add(request.user.pk)
+            return redirect("prac:detail", article.pk)
     return redirect("log:log_in")
 
 @login_required(login_url="log:log_in")
