@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block content %}
+  <div class="d-flex justify-content-center">
+    <div class="w-50 h-50 m-0">
+      <h2 class="text_light">
+        <span class="light">로그인</span></h2>
+      <div class="card-body">
+        <div class="back">
+          <form action="" method='POST'>
+            {% csrf_token %}
+            <div class="d-flex justify-content-center">
+              <div class="w-100 lh-lg">
+                <div class="px-5">
+                  {% bootstrap_form form %}
+                </div>
+                <div class="px-5 mt-5 mb-3">
+                  <button class="btn btn-outline-success w-100" type="submit">로그인</button>
+                  <div class="mt-3 d-flex justify-content-center">
+                    <p>아 직 도 회 원 이 아 니 세 요 !? 👉👉
+                      <a href="{% url 'log:signup' %}">클릭!</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

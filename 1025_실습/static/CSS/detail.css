@@ -1,0 +1,280 @@
+body {
+  margin: 0;
+  background: url("https://img1.yna.co.kr/etc/inner/KR/2019/07/15/AKR20190715126700005_01_i_P4.jpg");
+  background-size: cover;
+  /* linear-gradient(rgba(192, 189, 189, 0.5), rgba(192, 191, 191, 0.5)),   */
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 카드 css */
+
+.back {
+    margin-top:20%;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 1rem;
+    box-shadow: 5px 5px 5px 5px rgb(65, 64, 64, 0.8);
+    color:white;
+}
+
+.card_css {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 1rem;
+    box-shadow: 5px 5px 5px 5px rgb(65, 64, 64, 0.8);
+    color:beige;
+}
+
+.profile {
+    width: 100%;
+    height: 10rem;
+    background-color: rgb(64,64,64,0.8);
+    border-radius: 1rem;
+    box-shadow: 5px 5px 5px 5px rgb(64,64,64,0.8);
+}
+
+/* .paper {
+    width: 100%;
+    height: 20vh;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 5px 5px rgb(64,64,64,0.8);
+    color : white;
+    margin-bottom: 3rem;
+}
+
+.paper hr {
+    margin: 3px 0px;
+} */
+
+/* .text_detail {
+
+} */
+h2[class="text_light"] {
+    margin-top: 1rem;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 3rem;
+    line-height: 0.75;
+}
+span {
+    display: block;
+  }
+  
+h2[class="text_light"] span:not(.light) {
+    opacity: 0;
+    -webkit-animation: flashText 0.5s ease-out alternate infinite;
+            animation: flashText 0.5s ease-out alternate infinite;
+  }
+  
+h2[class="text_light"] span.light {
+    position: relative;
+    display: inline-block;
+  }
+  h2[class="text_light"] span.light:before {
+    position: absolute;
+    left: 0;
+    top: -10%;
+    width: 100%;
+    height: 120%;
+    background: #fff;
+    filter: blur(10px);
+    content: "";
+    opacity: 0;
+    -webkit-animation: flash 0.5s ease-out alternate infinite;
+            animation: flash 0.5s ease-out alternate infinite;
+  }
+  
+  @-webkit-keyframes flash {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes flash {
+    to {
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes flashText {
+    to {
+      opacity: 0.15;
+    }
+  }
+  @keyframes flashText {
+    to {
+      opacity: 0.15;
+    }
+  }
+
+/* 상단 네브바 */
+input[id="menuicon"] {
+    display: none;
+}
+
+input[id="menuicon"] + label {
+    display: block;
+    width: 100%;
+    height: 40px;
+    position: relative;
+}
+
+input[id="menuicon"] + label span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    border-radius: 30px;
+    background-color: #000;
+    transition: all .35s;
+}
+
+
+div[class="sidebar"] {
+    width: 100%;
+    height: 150px;
+    background: rgba(255,255,255,0.7);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top:-300px;
+    z-index: 1;
+    transition: all .35s;
+}
+
+input[id="menuicon"]:checked + label + div {
+    top:0px;
+
+}
+
+div[class="logo_img"] {
+    cursor: pointer;
+    position: absolute;
+    margin-top:0;
+    left:50%;
+}
+
+div[class="logo_img"] img {
+    border-radius: 100%;
+    width:100%;
+    height:200px;
+    transform: translateX(-50%);
+}
+
+input[id="menuicon"]:checked + label {
+    z-index: 2;
+}
+
+div[class="body_cover"] {
+    margin-top: 10rem;
+    position: relative;
+}
+
+/* 노트영역 */
+
+div[class="note"] {
+  width: 100%;
+  background-image: url("https://mblogthumb-phinf.pstatic.net/MjAxODA4MzFfMzgg/MDAxNTM1NjUxMDE1NTQ1.9vDkzwAHhH7TfPogh-_NnHukXwKdMuZIFHFd_bb4L2Yg.ZfB__3zHOJJdvFqMPGQX6cXD67Q6vEggtkmlL1RWViMg.PNG.xoxojw/%EC%A0%9C%EC%9D%B8_%EA%B5%BF%EB%85%B8%ED%8A%B8%EB%A6%AC%EA%B0%88%ED%8C%A8%EB%93%9C4.png?type=w800");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 5rem;  
+  padding-bottom: 2rem;
+}
+
+/* 포스트잇 css */
+
+div.rgyPostIt {
+  width: 20vw;
+  height: auto;
+  box-shadow: 5px 5px 5px 5px rgb(64,64,64,0.8);
+  color : #555;
+  position: relative;
+  display: inline-block;
+  padding: 20px 0 20px 15px;
+  border: 1px solid #f8f861;
+  border-left: 30px solid #f8f861;
+  border-bottom-right-radius: 60px 10px;
+  font-size: 25px;
+  word-break: break-all;
+  background: #ffff88; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(81%, #ffff88), color-stop(82%, #ffff88), color-stop(82%, #ffff88), color-stop(100%, #ffffc6)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%); /* IE10+ */
+  background: linear-gradient(135deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%); /* W3C */
+
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+}
+
+div.rgyPostIt::after {
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: 35px;
+  width: 150px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: 2px 35px 5px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 2px 35px 5px rgba(0, 0, 0, 0.4);
+  transform: matrix(-1, -0.1, 0, 1, 0, 0);
+  -webkit-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+  -moz-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+  -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+  -o-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+}
+
+div.rgyPostIt:hover {
+  border-bottom-right-radius: 75px 30px;
+}
+
+div.rgyPostIt:hover::after {
+  box-shadow: 2px 37px 7px rgba(0, 0, 0, 0.37);
+  -webkit-box-shadow: 2px 37px 7px rgba(0, 0, 0, 0.37);
+  cursor: pointer;
+}
+
+div.rgyPostIt h3 {
+  font-size: 22px;
+}
+div.rgyPostIt > p[class="text_detail"] {
+  overflow:hidden;
+  white-space:nowrap;
+  width:100%;
+  height: auto;
+  font-size: 20px;
+  text-overflow: ellipsis;
+}
+
+div.rgyPostIt > p > a {
+  color: #555;
+}
+
+div.rgyPostIt:nth-child(even) {
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+ }
+
+ div.rgyPostIt:nth-child(odd) {
+  -webkit-transform: rotate(-1deg);
+  -moz-transform: rotate(-1deg);
+  -o-transform: rotate(-1deg);
+  -ms-transform: rotate(-1deg);
+  transform: rotate(-1deg);
+ }
+
+ div.rgyPostIt:nth-child(3n) {
+  -webkit-transform: rotate(1deg);
+  -moz-transform: rotate(1deg);
+  -o-transform: rotate(1deg);
+  -ms-transform: rotate(1deg);
+  transform: rotate(1deg);
+ }

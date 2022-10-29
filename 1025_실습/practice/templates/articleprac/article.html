@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block content %}
+  {% comment %} <h1 class="text-center">게시글</h1> {% endcomment %}
+  <div class="container-fluid d-flex">
+  <div class="container", style="width:85%;">
+      <div class="row">
+        {% for form in forms %}
+          <div class="col col-md-3 col-lg-3 card_css p-0 my-5 mx-5">
+            <!--여기가 카드 시작지점-->
+            <div style="height:30vh; width:100%;">
+              {% if form.image %}
+                <!--이미지가 있을 경우 resize된 이미지 반환-->
+                <img src="{{ form.image.url }}" alt="..." style="width:100%; height:100%; opacity: 80%; border-radius:1rem;">
+              {% else %}
+                <!--없는 경우 static 파일의 이미지 가져오기-->
+                <img src="{% static 'images/unnamed.jpg' %}" alt="..." style="width:100%; height:100%; opacity: 80%; border-radius:1rem;">
+              {% endif %}
+            </div>
+            <div class="card-body ms-3 mt-3" style="color:white;">
+              <h5 class="card-title">{{ form.title }}</h5> 작성자 : {{ form.pk }}
+              <hr>
+              <p class="card-text" style="overflow:hidden; white-space:nowrap; width:100%; height:100%;text-overflow: ellipsis;">{{ form.content }}</p>
+              <hr>
+              <div class="d-flex justify-content-between">
+                <a class="btn btn-outline-primary mb-3" href="{% url 'prac:detail' form.pk %}">정보보기</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  <div style="width: 15%">
+    <div class="profile">
+      {% if user.is_authenticated %}
+    <p>어서오세요{{ user }}님</p>
+      <div class='d-flex justify-content-around'>
+        <a href="{% url 'log:profile_detail' user.pk %}"><button type="button" class="btn btn-secondary">프로필 수정</button></a>
+        <a href="{% url 'log:log_out' %}"><button type="button" class="btn btn-warning">로그아웃</button></a>
+      </div>
+      {% else %}
+      <a href="{% url 'log:log_in' %}"><button type="button" class="btn btn-primary">로그인</button></a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

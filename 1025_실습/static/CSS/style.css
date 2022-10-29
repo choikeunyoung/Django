@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "Sandoll";
+    src: url("../fonts/heiroflightbold.ttf") format("ttf");
+    font-weight: bold;
+}
+
+body {
+    font-family: "Sandoll";
+}
