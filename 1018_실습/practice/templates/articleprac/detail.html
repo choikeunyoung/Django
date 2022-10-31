@@ -85,7 +85,7 @@
     <div class="note">
       <div class="d-flex justify-content-center mb-5 w-100">
         <div class='w-75'>
-          <form action="{% url 'prac:comment_create' form.pk %}" method='POST'>
+          {% comment %} <form action="{% url 'prac:comment_create' form.pk %}" method='POST'>
             {% csrf_token %}
             <h5 class="text-center" style="color: black; margin-bottom: 15px">방명록</h5>
             <div class="d-flex w-100">
@@ -96,12 +96,24 @@
                 <button class="btn btn-light h-100" id="submitBtn" type="button">작성</button>
               </div>
             </div>
+          </form> {% endcomment %}
+          <h5 class="text-center" style="color: black; margin-bottom: 15px">방명록</h5>
+          <form id="comment-form" data-comment-id="{{ form.pk }}">
+            {% csrf_token %}
+            <div class="d-flex w-100">
+              <div style="color:white; width:90%">
+                {{ comment_form }} 
+              </div>
+              <div style="width:10%">
+                <button class="btn btn-light h-100" id="submitBtn" type="submit">작성</button>
+              </div>
+            </div>
           </form>
         </div>
       </div>
       <div class="row d-flex justify-content-around w-100">
         {% for comment in comments %}
-          <div class="rgyPostIt col-12 col-lg-3 ms-3 g-3 d-flex flex-column">
+          <div class="rgyPostIt col-12 col-lg-3 ms-3 g-3 d-flex flex-column" id="comment">
             <h3>{{ comment.user }}</h3>
             <hr>
             <p class="text_detail">{{ comment.content }}</p>

@@ -1,9 +1,11 @@
+from urllib import response
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Article, Comment
 from .forms import ArticleForm, CommentForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import JsonResponse
 import os
 
 @login_required(login_url="log:log_in")
@@ -81,7 +83,11 @@ def comment_create(request, pk):
         comment.article = article
         comment.user = request.user
         comment.save()
-        return redirect('prac:detail', article.pk)
+        context = {
+            'userName' : comment.user.username,
+            'content' : comment.content,
+        }
+        return JsonResponse(context)
     else:
         return redirect('prac:detail', article.pk)
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,12 +12,11 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/detail.css' %}">
-    {% comment %} <link href="https://webfontworld.github.io/heiroflight/HeirofLight.css" rel="stylesheet"> {% endcomment %}
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     {% bootstrap_css %}
     {% bootstrap_javascript %}
   </head>
-  
+
   <body style="font-family: 'Pacifico', cursive;">
     <input type="checkbox" id="menuicon">
     <label for="menuicon">
@@ -28,21 +27,21 @@
     <div class="sidebar">
       <a class="btn btn-outline-primary w-10 mx-3" href="{% url 'prac:article' %}">메인</a>
       {% if user.is_authenticated %}
-      <a class="btn btn-outline-primary w-10" href="{% url 'prac:index' %}">글 쓰기</a>
+        <a class="btn btn-outline-primary w-10" href="{% url 'prac:index' %}">글 쓰기</a>
       {% endif %}
     </div>
     <div class="body_cover">
       {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-{{ message.tags }}">
-        {{ message }}
-      </div>
-      {% endfor %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+          </div>
+        {% endfor %}
       {% endif %}
       {% block content %}{% endblock content %}
     </div>
     <script src="{% static 'js/comment.js' %}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
-  
-  </html>
+
+</html>
