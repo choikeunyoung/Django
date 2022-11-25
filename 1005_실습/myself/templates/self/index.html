@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>게시판</h1>
+  <a href="{% url 'self:new' %}">글쓰기</a>
+  <hr>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">제목</th>
+        <th scope="col">내용</th>
+        <th scope="col">생성시간</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for myself in myselfs %}
+        <tr>
+          <th scope="row">{{ myself.id }}</th>
+          <td>{{ myself.title }}</td>
+          <td>{{ myself.content }}</td>
+          <td>{{ myself.created_at }}</td>
+        </tr>
+      {% endfor %}
+    {% endblock %}

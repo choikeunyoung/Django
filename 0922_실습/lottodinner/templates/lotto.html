@@ -19,11 +19,41 @@
             font-size: 1.5rem;
             font-weight: bold;
         }
+        .ball_box {
+            display: flex;
+
+        }
+        .balls {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 5rem;
+            margin: 2rem;
+        }
     </style>
 </head>
 <body>
-    <div class="main" id="main_area">
-        <button class="lotto_btn" id="lottobtn">로또 번호 추첨</button>
+    <div>
+        이번주 당첨 번호 : {{ lotto_winner }}
+        <br>
+        보너스 번호 : {{ bonus }}
+        <br>
+        {% for i in lotto_list %}
+            <span>뽑은 번호 : </span>
+            {% for j in i.0 %}
+                <span>{{ j }}</span>
+            {% endfor %}
+            // 등수 : {{ i.1 }}<br>
+        {% endfor %}
     </div>
+    <!-- <div class="main" id="main_area"></div>
+        <button class="lotto_btn" id="lottobtn">로또 번호 추첨</button> -->
+    
+    <script>
+        const lottoBtn = document.querySelector('#lottobtn')
+        lottoBtn.addEventListener('click', function() {
+            const balls = document.createElement('div')
+            balls.classList.add('balls')
+        })
+    </script>
 </body>
 </html>

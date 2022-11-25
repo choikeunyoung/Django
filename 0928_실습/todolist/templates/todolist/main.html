@@ -1,25 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>오늘 해야 할 일!!</h1>
+<div class="bg-dark text-bg-dark" style="text-align: center">
+    <h1>오늘 해야 할 일!!</h1>
+</div>
 <br>
 
-<form>
-    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-
-        무엇을 해야 할 까? : <input type="text" name="title" placeholder="해야하는 일 적어">
-        <br>
-        몇번째로 할래? : <select name="priority">
-            <option value="1"> 1 </option>
-            <option value="2"> 2 </option>
-            <option value="3"> 3 </option>
-            <option value="4"> 4 </option>
-            <option value="5"> 5 </option>
-            <option value="6"> 6 </option>
-            <option value="7"> 7 </option>
-        </select><br>
-        언제까지 할껀데 : <input type="date" name="deadline"><br>
-        <input type="submit" value="눌러서 제출해"><br>
+<form action="{% url 'todolist:create' %}" method="GET">
+    <div class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <span style="width: 300px">무엇을 해야 할 까?</span>
+        <div>
+            <input type="text" required name="context" placeholder="해야하는 일 적어보자"
+                style="width: 300px; height: 2rem; margin-bottom: 1rem;">
+        </div>
+        <span style="width: 300px">몇번째로 할래?</span>
+        <div>
+            <select name="priority" style="width: 300px; height: 2rem; margin-bottom: 1rem;">
+                <option value="1"> 1 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+                <option value="4"> 4 </option>
+                <option value="5"> 5 </option>
+                <option value="6"> 6 </option>
+                <option value="7"> 7 </option>
+            </select>
+        </div>
+        <span style="width: 300px;">언제까지 할껀데</span>
+        <input type="date" name="deadline" style="width: 300px; height: 2rem; margin-bottom: 1rem;"><br>
+        <input type="submit" value="눌러서 제출해!!" style="width: 300px; height: 2rem; margin-bottom: 1rem;"><br>
     </div>
 </form>
 {% endblock %}

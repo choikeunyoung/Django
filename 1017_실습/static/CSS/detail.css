@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background: url("https://cdn.pmknews.com/news/photo/202111/818_1281_4833.jpg");
+    background: linear-gradient(rgba(192, 189, 189, 0.5), rgba(192, 191, 191, 0.5)),  url("https://img1.yna.co.kr/etc/inner/KR/2019/07/15/AKR20190715126700005_01_i_P4.jpg");
     background-size: cover;
   }
  .contain {

@@ -9,7 +9,16 @@
 </head>
 
 <body>
-    <H1>안녕!</H1>
+    <H1>게시판</H1>
+    <a href="{% url 'repeating:new' %}">글 쓰기</a>
+    {% for repeat in repeats %}
+    <h3>{{ repeat.title }}</h3>
+    {{ repeat.context }}
+    <p>{{ repeat.created_at }} {{ repeat.updated_at }}</p>
+    <a href="{% url 'repeating:edit' repeat.pk %}">글 수정</a>
+    <hr>
+    {% endfor %}
+
 </body>
 
 </html>

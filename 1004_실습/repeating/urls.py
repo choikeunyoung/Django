@@ -20,5 +20,14 @@ from repeating import views
 app_name = "repeating"
 
 urlpatterns = [
-    path("", views.index),
+    # localhost8000/repeating/
+    path("", views.index, name="index"),
+    # localhost8000/repeating/new/
+    path("new/", views.new, name="new"),
+    # localhost8000/repeating/create/
+    path("create/", views.create, name="create"),
+    # name을 지정해주는 이유는 변수화를 하기 위해서이다.
+    path("edit/<int:pk>/", views.edit, name="edit"),
+    # edit 한 값을 넘겨주는 길 생성
+    path("editing/<int:pk>/", views.editing, name="editing"),
 ]

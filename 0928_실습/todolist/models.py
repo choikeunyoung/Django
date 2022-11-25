@@ -2,7 +2,7 @@ from email.policy import default
 from django.db import models
 
 
-class today_todo(models.Model):
+class Today_todo(models.Model):
     content = models.CharField(max_length=80)
     completed = models.BooleanField(default=False)
     priority = models.IntegerField(default=3)

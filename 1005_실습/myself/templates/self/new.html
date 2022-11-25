@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
+  <div class="new_total container">
+    <form class="w-100" action="{% url 'self:create' %}" method="POST">
+      {% csrf_token %}
+      <div class="d-flex justify-content-center flex-column">
+        <h1 class="my-3 text-center">
+          <span>글</span>
+          <span>작</span>
+          <span>성</span>
+        </h1>
+        {% bootstrap_form myself_form %}
+        <!-- {{ myself_form.as_table }} -->
+        <div class="d-flex justify-content-center my-3">
+          <button class="ani_btn btn-primary">
+            <a href="{% url 'self:index' %}"></a>
+            <span>수</span>
+            <span>정</span>
+            <span>하</span>
+            <span>기</span>
+          </a>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
