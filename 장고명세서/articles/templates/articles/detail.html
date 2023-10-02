@@ -5,8 +5,15 @@
 <br>
 <p>생성 시간 : {{ article.created_at }} </p>
 <p>업데이트 : {{ article.updated_at }} </p>
+<br>
+<a href="{% url "article:update" article.pk %}" method="GET">수정</a>
+<br>
 <hr>
 <p>{{ article.content }}</p>
 <br>
 <a href="{% url "article:index" %}">뒤로</a>
+<form action="{% url "article:delete" article.pk %}" method="GET">
+    <br>
+    <button type="submit">삭제</button>
+</form>
 {% endblock content %}

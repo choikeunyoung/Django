@@ -32,3 +32,26 @@ def detail(request, pk):
         "article" : article,
     }
     return render(request, "articles/detail.html", context)
+
+
+def delete(request, pk):
+    article = Article.objects.get(pk = pk)
+    article.delete()
+    return redirect("article:index")
+
+
+def update(request, pk):
+    article = Article.objects.get(pk = pk)
+    if request.method == "POST":
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            article = form.save()
+            return redirect("article:detail", article.pk)
+        return redirect("article:update", article.pk)
+    else:
+        form = ArticleForm(instance=article)
+    context = {
+        "article" : article,
+        "form" : form,
+    }
+    return render(request, "articles/update.html", context)
