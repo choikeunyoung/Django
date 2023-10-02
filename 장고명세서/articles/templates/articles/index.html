@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>게시글 메인</h1>
+<br>
+<a href="{% url "article:create" %}">글 작성</a>
+<hr>
+{% for article in articles %}
+    <a href="{% url "article:detail" article.pk %}"><p>{{ article.pk }}</p></a>
+    <p>{{ article.title }}</p>
+    <p>{{ article.content }}</p>
+    <p>{{ article.created_at }}</p>
+    <p>{{ article.updated_at }}</p>
+    <hr>
+{% endfor %}
+{% endblock content %}

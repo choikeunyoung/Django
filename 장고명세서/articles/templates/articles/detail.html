@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ article.title }}</h1>
+<br>
+<p>생성 시간 : {{ article.created_at }} </p>
+<p>업데이트 : {{ article.updated_at }} </p>
+<hr>
+<p>{{ article.content }}</p>
+<br>
+<a href="{% url "article:index" %}">뒤로</a>
+{% endblock content %}
